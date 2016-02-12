@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Jobles\\Careerjet\\": "src/"
+    },
+    "classmap": [
+      "Careerjet_API.php"
+    ]
+  },
+  "require": {
+    "jobles/core-php": "dev-master"
+  }
+}

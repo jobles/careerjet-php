@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "c86045eee59d3954550d094054b12a08",
+    "content-hash": "06386fe9712bec41c025f01b9d71599d",
+    "packages": [
+        {
+            "name": "jobles/core-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jobles/core-php.git",
+                "reference": "ac644434d2bbc48af15525c8dc64c6d96f6b9c2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jobles/core-php/zipball/ac644434d2bbc48af15525c8dc64c6d96f6b9c2f",
+                "reference": "ac644434d2bbc48af15525c8dc64c6d96f6b9c2f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jobles\\Core\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Jobl.es Developers",
+                    "email": "contact@jobl.es",
+                    "homepage": "http://jobl.es"
+                }
+            ],
+            "description": "Jobl.es core PHP library",
+            "homepage": "https://github.com/jobles/core-php",
+            "time": "2016-02-12 04:59:35"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "jobles/core-php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
