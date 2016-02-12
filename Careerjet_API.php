@@ -20,7 +20,6 @@
  * @link        http://www.careerjet.com/partners/api/php/
  */
 
-
 /**
  * Class to access Careerjet's job search API
  *
@@ -148,9 +147,9 @@ class Careerjet_API {
      *   zh_CN      Chinese          China                http://www.careerjet.cn
      * </pre>
      *
+     * @param string $locale
      */
-
-    function Careerjet_API( $locale = 'en_GB' )
+    function __construct($locale = 'en_GB')
     {
         $this->locale = $locale;
     }
@@ -158,7 +157,6 @@ class Careerjet_API {
     /**
      * @ignore
      **/
-
     function call($fname , $args)
     {
         $url = 'http://public.api.careerjet.net/'.$fname.'?locale_code='.$this->locale;
@@ -175,13 +173,6 @@ class Careerjet_API {
             $url .= '&'. $key . '='. urlencode($value);
         }
 
-        if (empty($_SERVER['REMOTE_ADDR'])) {
-            return (object) array(
-                'type' => 'ERROR',
-                'error' => 'not running within a http server'
-            );
-        }
-
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
         } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
@@ -189,12 +180,20 @@ class Careerjet_API {
         } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             // For more info: http://en.wikipedia.org/wiki/X-Forwarded-For
             $ip = trim(array_shift(array_values(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']))));
-        } else {
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
             $ip = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ip = '::1';
         }
 
         $url .= '&user_ip=' . $ip;
-        $url .= '&user_agent=' . urlencode($_SERVER['HTTP_USER_AGENT']);
+
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+            $userAgent = urlencode($_SERVER['HTTP_USER_AGENT']);
+        } else {
+            $userAgent = 'Mozilla%2F5.0+%28Macintosh%3B+Intel+Mac+OS+X+10_10_5%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F48.0.2564.103+Safari%2F537.36';
+        }
+        $url .= '&user_agent=' . $userAgent;
 
         // determine current page
         $current_page_url = '';
@@ -224,7 +223,6 @@ class Careerjet_API {
         $response = file_get_contents($url, false, $careerjet_api_context);
         return json_decode($response);
     }
-
 
     /**
      * Performs a search using Careerjet's public search API
@@ -276,7 +274,7 @@ class Careerjet_API {
      *   }
      * </code>
      *
-     * @param   array  $args
+     * @param   array $args
      *
      * map of search parameters
      *
@@ -333,18 +331,16 @@ class Careerjet_API {
      *    'f'     - Full time<br>
      *    'p'     - Part time<br>
      *    Default: none (all contract periods)
+     * @return object An object containing results
      *
-     * @return object(stdClass)  An object containing results
-     *
+     * @throws \Jobles\Careerjet\CareerjetException
      */
     function search($args)
     {
         $result =  $this->call('search' , $args);
         if ($result->type == 'ERROR') {
-            trigger_error( $result->error );
+            throw new \Jobles\Careerjet\CareerjetException($result->error);
         }
         return $result;
     }
 }
-
-?>
