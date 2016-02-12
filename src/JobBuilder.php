@@ -2,6 +2,7 @@
 
 namespace Jobles\Careerjet;
 
+use Jobles\Careerjet\Builder\BrazilianLocationsBuilder;
 use Jobles\Core\Job\Job;
 
 class JobBuilder
@@ -27,13 +28,14 @@ class JobBuilder
         if (isset($apiJob->salary_max)) {
             $job->setSalaryMax($apiJob->salary_max);
         }
-        $city = $state = null;
-        if ($country == 'Brazil') {
-            list($city, $state) = explode(' - ', $apiJob->locations);
-        }
-        $job->setCity($city);
-        $job->setState($state);
         $job->setCountry($country);
+        switch ($country) {
+            case 'Brazil':
+                $job = BrazilianLocationsBuilder::fromApi($apiJob, $job);
+                break;
+            default:
+                break;
+        }
 
         return $job;
     }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c86045eee59d3954550d094054b12a08",
-    "content-hash": "06386fe9712bec41c025f01b9d71599d",
+    "hash": "32b658cc04fa1c3fddedc1ce336f153f",
+    "content-hash": "ae8b85ca733d23ce3606f03770e1ab2b",
     "packages": [
         {
             "name": "jobles/core-php",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobles/core-php.git",
-                "reference": "ac644434d2bbc48af15525c8dc64c6d96f6b9c2f"
+                "reference": "05c86c0a8cdd1f84b8647ae13214c64e06616fa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobles/core-php/zipball/ac644434d2bbc48af15525c8dc64c6d96f6b9c2f",
-                "reference": "ac644434d2bbc48af15525c8dc64c6d96f6b9c2f",
+                "url": "https://api.github.com/repos/jobles/core-php/zipball/05c86c0a8cdd1f84b8647ae13214c64e06616fa6",
+                "reference": "05c86c0a8cdd1f84b8647ae13214c64e06616fa6",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "proprietary"
+                "MIT"
             ],
             "authors": [
                 {
@@ -43,7 +43,7 @@
             ],
             "description": "Jobl.es core PHP library",
             "homepage": "https://github.com/jobles/core-php",
-            "time": "2016-02-12 04:59:35"
+            "time": "2016-02-12 06:20:50"
         }
     ],
     "packages-dev": [],
@@ -54,6 +54,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.5"
+    },
     "platform-dev": []
 }
