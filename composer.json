@@ -1,4 +1,20 @@
 {
+  "name": "jobles/careerjet-php",
+  "description": "Jobl.es implementation of Careerjet PHP library",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "homepage": "https://github.com/jobles/careerjet-php",
+  "support": {
+    "issues": "https://github.com/jobles/careerjet-php/issues"
+  },
+  "authors": [
+    {
+      "name": "Jobl.es Developers",
+      "email": "contact@jobl.es",
+      "homepage": "http://jobl.es"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Jobles\\Careerjet\\": "src/"
@@ -8,6 +24,7 @@
     ]
   },
   "require": {
+    "php": ">=5.5",
     "jobles/core-php": "dev-master"
   }
 }
