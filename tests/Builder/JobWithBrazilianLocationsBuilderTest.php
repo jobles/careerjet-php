@@ -28,4 +28,53 @@ class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($job->getCity());
         $this->assertEquals('Brazil', $job->getCountry());
     }
+
+    public function testLocationIsAcre()
+    {
+        $apiJob = new \stdClass;
+        $apiJob->locations = 'Acre';
+
+        $job = new Job;
+        $job->setCountry('Brazil');
+        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+
+        $this->assertEquals('AC', $job->getState());
+        $this->assertNull($job->getCity());
+        $this->assertEquals('Brazil', $job->getCountry());
+    }
+
+    public function testLocationIsAlagoas()
+    {
+        $apiJob = new \stdClass;
+        $apiJob->locations = 'Alagoas';
+
+        $job = new Job;
+        $job->setCountry('Brazil');
+        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+
+        $this->assertEquals('AL', $job->getState());
+        $this->assertNull($job->getCity());
+        $this->assertEquals('Brazil', $job->getCountry());
+    }
+
+    public function testLocationIsAmapa()
+    {
+        $apiJob = new \stdClass;
+        $apiJob->locations = 'Amapá';
+
+        $job = new Job;
+        $job->setCountry('Brazil');
+        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+
+        $this->assertEquals('AP', $job->getState());
+        $this->assertNull($job->getCity());
+        $this->assertEquals('Brazil', $job->getCountry());
+
+        $apiJob->locations = 'Amapa';
+        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+
+        $this->assertEquals('AP', $job->getState());
+        $this->assertNull($job->getCity());
+        $this->assertEquals('Brazil', $job->getCountry());
+    }
 }
