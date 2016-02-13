@@ -6,6 +6,14 @@ use Jobles\Careerjet\Locale;
 
 class LocaleTest extends \PHPUnit_Framework_TestCase
 {
+    public function testInvalidCountryShouldThrowInvalidArgumentException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Please use a valid country');
+
+        Locale::byCountryAndLanguage('Invalid country');
+    }
+
     /**
      * @dataProvider localeDataProvider
      * @param $country
