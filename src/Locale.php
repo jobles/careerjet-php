@@ -29,7 +29,6 @@ class Locale
                     case 'Dutch':
                     default:
                         $locale = 'nl_BE';
-                        break;
                 }
                 break;
             case 'Bolivia': // Spanish
@@ -46,7 +45,6 @@ class Locale
                     case 'English':
                     default:
                         $locale = 'en_CA';
-                        break;
                 }
                 break;
             case 'Chile': // Spanish
@@ -60,7 +58,6 @@ class Locale
                     case 'Chinese':
                     default:
                         $locale = 'zh_CN';
-                        break;
                 }
                 break;
             case 'Costa Rica': // Spanish
@@ -188,7 +185,6 @@ class Locale
                     case 'French':
                     default:
                         $locale = 'fr_CH';
-                        break;
                 }
                 break;
             case 'Taiwan': // English
@@ -205,7 +201,6 @@ class Locale
                     case 'Ukrainian':
                     default:
                         $locale = 'uk_UA';
-                        break;
                 }
                 break;
             case 'United Arab Emirates': // English
@@ -231,7 +226,6 @@ class Locale
                     case 'Vietnamese':
                     default:
                         $locale = 'vi_VN';
-                        break;
                 }
                 break;
             default:
