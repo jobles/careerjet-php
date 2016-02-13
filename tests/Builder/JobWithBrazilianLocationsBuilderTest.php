@@ -42,6 +42,16 @@ class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
+    public function testLocationIsStateCityComposition()
+    {
+        $this->apiJob->locations = 'São Paulo - SP';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
+
+        $this->assertEquals('SP', $this->job->getState());
+        $this->assertEquals('São Paulo', $this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
+    }
+
     /**
      * @dataProvider statesDataProvider
      * @param $stateName
