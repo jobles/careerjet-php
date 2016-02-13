@@ -1,6 +1,6 @@
 <?php
 
-namespace Jobles\Careerjet;
+namespace Jobles\Careerjet\Exception;
 
 use Jobles\Core\JoblesException;
 

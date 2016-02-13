@@ -333,13 +333,13 @@ class Careerjet_API {
      *    Default: none (all contract periods)
      * @return object An object containing results
      *
-     * @throws \Jobles\Careerjet\CareerjetException
+     * @throws \Jobles\Careerjet\Exception\CareerjetException
      */
     function search($args)
     {
         $result =  $this->call('search' , $args);
         if ($result->type == 'ERROR') {
-            throw new \Jobles\Careerjet\CareerjetException($result->error);
+            throw new \Jobles\Careerjet\Exception\CareerjetException($result->error);
         }
         return $result;
     }
