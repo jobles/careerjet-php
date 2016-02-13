@@ -2,15 +2,22 @@
 
 namespace Jobles\Careerjet\Builder;
 
-class BrazilianLocationsBuilder
+use Jobles\Careerjet\Exception\CareerjetException;
+
+class JobWithBrazilianLocationsBuilder
 {
     /**
      * @param \stdClass $apiJob
      * @param \Jobles\Core\Job\Job $job
      * @return \Jobles\Core\Job\Job
+     * @throws CareerjetException
      */
     public static function fromApi(\stdClass $apiJob, \Jobles\Core\Job\Job $job)
     {
+        if (!isset($apiJob->locations)) {
+            throw new CareerjetException('Invalid API job');
+        }
+
         switch ($apiJob->locations) {
             case 'Brasil':
                 break;

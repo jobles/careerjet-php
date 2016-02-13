@@ -2,6 +2,7 @@
 
 namespace Jobles\Careerjet;
 
+use Jobles\Careerjet\Builder\JobBuilder;
 use Jobles\Core\API\SearchInterface;
 use Jobles\Core\Job\JobCollection;
 
@@ -269,6 +270,7 @@ class Api implements SearchInterface
      */
     public function search(array $filters = [])
     {
+        $collection = new JobCollection;
         $search = ['affid' => $this->affiliateId];
         if (isset($filters['keywords'])) { // empty allowed
             $search['keywords'] = $filters['keywords'];
@@ -279,14 +281,11 @@ class Api implements SearchInterface
         if (isset($filters['limit'])) { // max 99
             $search['pagesize'] = $filters['limit'];
         }
-        if (isset($filters['offset'])) { // starts on 1
-            $search['page'] = $filters['offset'];
-        }
-        $result = $this->api->search($search);
+        $search['page'] = isset($filters['offset']) ? $filters['offset'] : 1; // starts on 1
 
-        $collection = new JobCollection;
-        foreach ($result->jobs as $apiJob) {
-            $collection->addJob(JobBuilder::fromApi($apiJob, $this->country));
+        $result = $this->api->search($search);
+        foreach ($result->jobs as $job) {
+            $collection->addJob(JobBuilder::fromApi($job, $this->country));
         }
 
         return $collection;
