@@ -25,6 +25,9 @@ class JobBuilderTest extends \PHPUnit_Framework_TestCase
         $apiJob->site = 'www.ceviu.com.br';
         $apiJob->company = 'Mega Enterprise, Co';
         $apiJob->locations = 'São Paulo - SP';
+        $apiJob->salary_currency_code = 'BRL';
+        $apiJob->salary_min = '1000';
+        $apiJob->salary_max = '2000';
 
         $job = JobBuilder::fromApi($apiJob, 'Brazil');
 
@@ -37,5 +40,13 @@ class JobBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Mega Enterprise, Co', $job->getCompany());
         $this->assertEquals('São Paulo', $job->getCity());
         $this->assertEquals('SP', $job->getState());
+        $this->assertEquals('BRL', $job->getSalaryCurrencyCode());
+        $this->assertEquals('1000', $job->getSalaryMin());
+        $this->assertEquals('2000', $job->getSalaryMax());
+
+        $job = JobBuilder::fromApi($apiJob, 'China');
+
+        $this->assertNull($job->getState());
+        $this->assertNull($job->getCity());
     }
 }
