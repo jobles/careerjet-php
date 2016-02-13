@@ -7,6 +7,23 @@ use Jobles\Core\Job\Job;
 
 class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \stdClass
+     */
+    private $apiJob;
+
+    /**
+     * @var Job
+     */
+    private $job;
+
+    public function setUp()
+    {
+        $this->apiJob = new \stdClass;
+        $this->job = new Job;
+        $this->job->setCountry('Brazil');
+    }
+
     public function testFromApiThrowsCareerjetExceptionWhenLocationIsNotPresent()
     {
         $this->expectException(\Jobles\Careerjet\Exception\CareerjetException::class);
@@ -17,64 +34,58 @@ class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testLocationIsBrasil()
     {
-        $apiJob = new \stdClass;
-        $apiJob->locations = 'Brasil';
+        $this->apiJob->locations = 'Brasil';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $job = new Job;
-        $job->setCountry('Brazil');
-        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
-
-        $this->assertNull($job->getState());
-        $this->assertNull($job->getCity());
-        $this->assertEquals('Brazil', $job->getCountry());
+        $this->assertNull($this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
     public function testLocationIsAcre()
     {
-        $apiJob = new \stdClass;
-        $apiJob->locations = 'Acre';
+        $this->apiJob->locations = 'Acre';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $job = new Job;
-        $job->setCountry('Brazil');
-        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
-
-        $this->assertEquals('AC', $job->getState());
-        $this->assertNull($job->getCity());
-        $this->assertEquals('Brazil', $job->getCountry());
+        $this->assertEquals('AC', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
     public function testLocationIsAlagoas()
     {
-        $apiJob = new \stdClass;
-        $apiJob->locations = 'Alagoas';
+        $this->apiJob->locations = 'Alagoas';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $job = new Job;
-        $job->setCountry('Brazil');
-        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
-
-        $this->assertEquals('AL', $job->getState());
-        $this->assertNull($job->getCity());
-        $this->assertEquals('Brazil', $job->getCountry());
+        $this->assertEquals('AL', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
     public function testLocationIsAmapa()
     {
-        $apiJob = new \stdClass;
-        $apiJob->locations = 'Amapá';
+        $this->apiJob->locations = 'Amapá';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $job = new Job;
-        $job->setCountry('Brazil');
-        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+        $this->assertEquals('AP', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
 
-        $this->assertEquals('AP', $job->getState());
-        $this->assertNull($job->getCity());
-        $this->assertEquals('Brazil', $job->getCountry());
+        $this->apiJob->locations = 'Amapa';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $apiJob->locations = 'Amapa';
-        $job = JobWithBrazilianLocationsBuilder::fromApi($apiJob, $job);
+        $this->assertEquals('AP', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
+    }
 
-        $this->assertEquals('AP', $job->getState());
-        $this->assertNull($job->getCity());
-        $this->assertEquals('Brazil', $job->getCountry());
+    public function testLocationIsAmazonas()
+    {
+        $this->apiJob->locations = 'Amazonas';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
+
+        $this->assertEquals('AM', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
     }
 }
