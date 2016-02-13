@@ -42,77 +42,64 @@ class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
-    public function testLocationIsAcre()
+    /**
+     * @dataProvider statesDataProvider
+     * @param $stateName
+     * @param $shortState
+     * @throws \Jobles\Careerjet\Exception\CareerjetException
+     */
+    public function testLocationsAsStateNameSetsShortStateOnJob($stateName, $shortState)
     {
-        $this->apiJob->locations = 'Acre';
+        $this->apiJob->locations = $stateName;
         $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
 
-        $this->assertEquals('AC', $this->job->getState());
+        $this->assertEquals($shortState, $this->job->getState());
         $this->assertNull($this->job->getCity());
         $this->assertEquals('Brazil', $this->job->getCountry());
     }
 
-    public function testLocationIsAlagoas()
+    public function statesDataProvider()
     {
-        $this->apiJob->locations = 'Alagoas';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('AL', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-    }
-
-    public function testLocationIsAmapa()
-    {
-        $this->apiJob->locations = 'Amapá';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('AP', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-
-        $this->apiJob->locations = 'Amapa';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('AP', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-    }
-
-    public function testLocationIsAmazonas()
-    {
-        $this->apiJob->locations = 'Amazonas';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('AM', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-    }
-
-    public function testLocationIsBahia()
-    {
-        $this->apiJob->locations = 'Bahia';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('BA', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-    }
-
-    public function testLocationIsCeara()
-    {
-        $this->apiJob->locations = 'Ceará';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('CE', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
-
-        $this->apiJob->locations = 'Ceara';
-        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
-
-        $this->assertEquals('CE', $this->job->getState());
-        $this->assertNull($this->job->getCity());
-        $this->assertEquals('Brazil', $this->job->getCountry());
+        return [
+            ['Acre', 'AC'],
+            ['Alagoas', 'AL'],
+            ['Amapá', 'AP'],
+            ['Amapa', 'AP'],
+            ['Amazonas', 'AM'],
+            ['Bahia', 'BA'],
+            ['Ceará', 'CE'],
+            ['Ceara', 'CE'],
+            ['Distrito-Federal', 'DF'],
+            ['Distrito Federal', 'DF'],
+            ['Espírito Santo', 'ES'],
+            ['Espirito Santo', 'ES'],
+            ['Goiás', 'GO'],
+            ['Goias', 'GO'],
+            ['Maranhão', 'MA'],
+            ['Maranhao', 'MA'],
+            ['Mato Grosso', 'MT'],
+            ['Mato Grosso do Sul', 'MS'],
+            ['Minas Gerais', 'MG'],
+            ['Pará', 'PA'],
+            ['Para', 'PA'],
+            ['Paraíba', 'PB'],
+            ['Paraiba', 'PB'],
+            ['Paraná', 'PR'],
+            ['Parana', 'PR'],
+            ['Pernambuco', 'PE'],
+            ['Piauí', 'PI'],
+            ['Piaui', 'PI'],
+            ['Rio de Janeiro', 'RJ'],
+            ['Rio Grande do Norte', 'RN'],
+            ['Rio Grande do Sul', 'RS'],
+            ['Rondônia', 'RO'],
+            ['Rondonia', 'RO'],
+            ['Roraima', 'RR'],
+            ['Santa Catarina', 'SC'],
+            ['São Paulo', 'SP'],
+            ['Sao Paulo', 'SP'],
+            ['Sergipe', 'SE'],
+            ['Tocantins', 'TO'],
+        ];
     }
 }
