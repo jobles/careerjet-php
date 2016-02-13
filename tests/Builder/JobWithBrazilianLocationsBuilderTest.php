@@ -88,4 +88,31 @@ class JobWithBrazilianLocationsBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->job->getCity());
         $this->assertEquals('Brazil', $this->job->getCountry());
     }
+
+    public function testLocationIsBahia()
+    {
+        $this->apiJob->locations = 'Bahia';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
+
+        $this->assertEquals('BA', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
+    }
+
+    public function testLocationIsCeara()
+    {
+        $this->apiJob->locations = 'Ceará';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
+
+        $this->assertEquals('CE', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
+
+        $this->apiJob->locations = 'Ceara';
+        $this->job = JobWithBrazilianLocationsBuilder::fromApi($this->apiJob, $this->job);
+
+        $this->assertEquals('CE', $this->job->getState());
+        $this->assertNull($this->job->getCity());
+        $this->assertEquals('Brazil', $this->job->getCountry());
+    }
 }
