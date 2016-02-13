@@ -28,12 +28,53 @@ class Api implements SearchInterface
      */
     private $language;
 
-    public function __construct($affiliateId, $country, $language = null)
+    public function __construct($affiliateId, $country, $language = null, \Careerjet_API $api = null)
     {
         $this->affiliateId = $affiliateId;
         $this->country = $country;
         $this->language = $language;
 
+        if (!empty($api)) {
+            $this->api = $api;
+        } else {
+            $this->api = new \Careerjet_API($this->getLocale($country, $language));
+        }
+    }
+
+    /**
+     * @param array $filters
+     * @return JobCollection
+     */
+    public function search(array $filters = [])
+    {
+        $collection = new JobCollection;
+        $search = ['affid' => $this->affiliateId];
+        if (isset($filters['keywords'])) { // empty allowed
+            $search['keywords'] = $filters['keywords'];
+        }
+        if (isset($filters['location'])) { // empty allowed
+            $search['location'] = $filters['location'];
+        }
+        if (isset($filters['limit'])) { // max 99
+            $search['pagesize'] = $filters['limit'];
+        }
+        $search['page'] = isset($filters['offset']) ? $filters['offset'] : 1; // starts on 1
+
+        $result = $this->api->search($search);
+        foreach ($result->jobs as $job) {
+            $collection->addJob(JobBuilder::fromApi($job, $this->country));
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @param string $country
+     * @param string $language
+     * @return string
+     */
+    private function getLocale($country, $language)
+    {
         switch ($country) {
             case 'Australia': // English
                 $locale = 'en_AU';
@@ -261,33 +302,6 @@ class Api implements SearchInterface
                 throw new \InvalidArgumentException('Please use a valid country');
         }
 
-        $this->api = new \Careerjet_API($locale);
-    }
-
-    /**
-     * @param array $filters
-     * @return JobCollection
-     */
-    public function search(array $filters = [])
-    {
-        $collection = new JobCollection;
-        $search = ['affid' => $this->affiliateId];
-        if (isset($filters['keywords'])) { // empty allowed
-            $search['keywords'] = $filters['keywords'];
-        }
-        if (isset($filters['location'])) { // empty allowed
-            $search['location'] = $filters['location'];
-        }
-        if (isset($filters['limit'])) { // max 99
-            $search['pagesize'] = $filters['limit'];
-        }
-        $search['page'] = isset($filters['offset']) ? $filters['offset'] : 1; // starts on 1
-
-        $result = $this->api->search($search);
-        foreach ($result->jobs as $job) {
-            $collection->addJob(JobBuilder::fromApi($job, $this->country));
-        }
-
-        return $collection;
+        return $locale;
     }
 }
