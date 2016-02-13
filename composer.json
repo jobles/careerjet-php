@@ -28,6 +28,7 @@
     "jobles/core-php": "dev-master"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.0"
+    "phpunit/phpunit": "~5.0",
+    "squizlabs/php_codesniffer": "~2.0"
   }
 }
