@@ -46,7 +46,7 @@ class JobBuilderTest extends \PHPUnit_Framework_TestCase
 
         $job = JobBuilder::fromApi($apiJob, 'China');
 
-        $this->assertNull($job->getState());
-        $this->assertNull($job->getCity());
+        $this->assertEmpty($job->getState());
+        $this->assertEmpty($job->getCity());
     }
 }

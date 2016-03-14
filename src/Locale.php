@@ -6,10 +6,10 @@ class Locale
 {
     /**
      * @param string $country
-     * @param string $language
+     * @param string|null $language
      * @return string
      */
-    public static function byCountryAndLanguage($country, $language = null)
+    public static function byCountryAndLanguage(string $country, string $language = null) : string
     {
         switch ($country) {
             case 'Australia': // English

@@ -2,7 +2,7 @@
 
 namespace Jobles\Careerjet\Exception;
 
-use Jobles\Core\JoblesException;
+use Jobles\Core\Exception\JoblesException;
 
 class CareerjetException extends JoblesException
 {

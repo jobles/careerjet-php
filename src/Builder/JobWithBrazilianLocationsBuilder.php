@@ -3,16 +3,17 @@
 namespace Jobles\Careerjet\Builder;
 
 use Jobles\Careerjet\Exception\CareerjetException;
+use Jobles\Core\Job\Job;
 
 class JobWithBrazilianLocationsBuilder
 {
     /**
      * @param \stdClass $apiJob
-     * @param \Jobles\Core\Job\Job $job
-     * @return \Jobles\Core\Job\Job
+     * @param Job $job
+     * @return Job
      * @throws CareerjetException
      */
-    public static function fromApi(\stdClass $apiJob, \Jobles\Core\Job\Job $job)
+    public static function fromApi(\stdClass $apiJob, Job $job) : Job
     {
         if (!isset($apiJob->locations)) {
             throw new CareerjetException('Invalid API job');

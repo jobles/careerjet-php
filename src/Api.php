@@ -28,7 +28,7 @@ class Api implements SearchInterface
      */
     private $language;
 
-    public function __construct($affiliateId, $country, $language = null, \Careerjet_API $api = null)
+    public function __construct(string $affiliateId, string $country, string $language = null, \Careerjet_API $api = null)
     {
         $this->affiliateId = $affiliateId;
         $this->country = $country;
@@ -40,8 +40,9 @@ class Api implements SearchInterface
     /**
      * @param array $filters
      * @return JobCollection
+     * @throws Exception\CareerjetException
      */
-    public function search(array $filters = [])
+    public function search(array $filters = []) : JobCollection
     {
         $collection = new JobCollection;
         $search = ['affid' => $this->affiliateId];

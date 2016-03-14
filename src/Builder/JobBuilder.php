@@ -13,7 +13,7 @@ class JobBuilder
      * @return Job
      * @throws CareerjetException
      */
-    public static function fromApi(\stdClass $apiJob, $country)
+    public static function fromApi(\stdClass $apiJob, string $country) : Job
     {
         self::validateJob($apiJob);
 
