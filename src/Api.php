@@ -28,8 +28,12 @@ class Api implements SearchInterface
      */
     private $language;
 
-    public function __construct(string $affiliateId, string $country, string $language = null, \Careerjet_API $api = null)
-    {
+    public function __construct(
+        string $affiliateId,
+        string $country,
+        string $language = null,
+        \Careerjet_API $api = null
+    ) {
         $this->affiliateId = $affiliateId;
         $this->country = $country;
         $this->language = $language;
