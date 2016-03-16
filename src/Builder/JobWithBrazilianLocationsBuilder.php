@@ -7,9 +7,11 @@ use Jobles\Core\Job\Job;
 
 class JobWithBrazilianLocationsBuilder
 {
+
     /**
      * @param \stdClass $apiJob
-     * @param Job $job
+     * @param Job       $job
+     *
      * @return Job
      * @throws CareerjetException
      */

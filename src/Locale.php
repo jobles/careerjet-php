@@ -4,9 +4,11 @@ namespace Jobles\Careerjet;
 
 class Locale
 {
+
     /**
-     * @param string $country
+     * @param string      $country
      * @param string|null $language
+     *
      * @return string
      */
     public static function byCountryAndLanguage(string $country, string $language = null) : string

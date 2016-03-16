@@ -7,9 +7,11 @@ use Jobles\Core\Job\Job;
 
 class JobBuilder
 {
+
     /**
      * @param \stdClass $apiJob
-     * @param $country
+     * @param           $country
+     *
      * @return Job
      * @throws CareerjetException
      */
@@ -49,6 +51,7 @@ class JobBuilder
 
     /**
      * @param \stdClass $apiJob
+     *
      * @throws CareerjetException
      */
     private static function validateJob(\stdClass $apiJob)

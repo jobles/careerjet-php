@@ -8,6 +8,7 @@ use Jobles\Core\Job\JobCollection;
 
 class Api implements SearchInterface
 {
+
     /**
      * @var string
      */
@@ -43,6 +44,7 @@ class Api implements SearchInterface
 
     /**
      * @param array $filters
+     *
      * @return JobCollection
      * @throws Exception\CareerjetException
      */
