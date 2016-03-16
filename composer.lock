@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jobles/core-php.git",
-                "reference": "bfbaeb85ad88d2c24abdfcfcfa3120e695dea036"
+                "reference": "e868a115fe258d62e013e89d3bfd69c3d9b9cb0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jobles/core-php/zipball/bfbaeb85ad88d2c24abdfcfcfa3120e695dea036",
-                "reference": "bfbaeb85ad88d2c24abdfcfcfa3120e695dea036",
+                "url": "https://api.github.com/repos/jobles/core-php/zipball/e868a115fe258d62e013e89d3bfd69c3d9b9cb0c",
+                "reference": "e868a115fe258d62e013e89d3bfd69c3d9b9cb0c",
                 "shasum": ""
             },
             "require": {
@@ -699,16 +699,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.2.11",
+            "version": "5.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "94b953a53d92cc6024bcbaab39a73370fd2f267c"
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/94b953a53d92cc6024bcbaab39a73370fd2f267c",
-                "reference": "94b953a53d92cc6024bcbaab39a73370fd2f267c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f0948bab32270352f97d1913d82a49338dcb0da",
+                "reference": "6f0948bab32270352f97d1913d82a49338dcb0da",
                 "shasum": ""
             },
             "require": {
@@ -769,7 +769,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-14 06:24:28"
+            "time": "2016-03-15 05:59:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
