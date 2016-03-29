@@ -65,7 +65,7 @@ class Api implements SearchInterface
 
         $result = $this->api->search($search);
         foreach ($result->jobs as $job) {
-            $collection->addJob(JobBuilder::fromApi($job, $this->country));
+            $collection->add(JobBuilder::fromApi($job, $this->country));
         }
 
         return $collection;
